@@ -32,7 +32,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Andrea Leon** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Andrea Leon** - *Initial work* - (https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
