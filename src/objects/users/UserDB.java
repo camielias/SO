@@ -13,14 +13,12 @@ public class UserDB extends SerializedObjList<User> implements Serializable {
 		initialize();
 	}
 
-	private void initialize() {
-		readDB();
-		System.out.println("USER_DB SUCCESFULLY LOADED");
-		System.out.println("USER_DB USER COUNT: " + ObjectDB.size());
-		adddefaults();
-		printloadedDB();
+	private void adddefaults() {
+		if (!userexist("ADMIN"))
+			this.AddObj(new User("ADMIN", "ADMIN", 0, "ADMIN", User.ADMINISTRATOR));
 	}
 
+	@Override
 	public void AddObj(User user) {
 		if (isvaliduser(user)) {
 			ObjectDB.add(user);
@@ -29,21 +27,9 @@ public class UserDB extends SerializedObjList<User> implements Serializable {
 		}
 	}
 
-	private boolean isvaliduser(User user) {
-		return true;
-	}
-
-	private void adddefaults() {
-		if (!userexist("ADMIN"))
-			this.AddObj(new User("ADMIN", "ADMIN", 0, "ADMIN", User.ADMINISTRATOR));
-	}
-
-	public boolean ValidateCredentials(String username, String password) {
+	public int getAcessLevel(String username) {
 		int userindex = indexof(username);
-		if (userindex != -1 && ObjectDB.get(userindex).password.equals(password)) {
-			return true;
-		}
-		return false;
+		return ObjectDB.get(userindex).AccessLevel;
 	}
 
 	public int indexof(String username) {
@@ -55,18 +41,23 @@ public class UserDB extends SerializedObjList<User> implements Serializable {
 		return -1;
 	}
 
-	public boolean userexist(String username) {
-		if (indexof(username) == -1) {
-			return false;
-		}
+	private void initialize() {
+		readDB();
+		System.out.println("USER_DB SUCCESFULLY LOADED");
+		System.out.println("USER_DB USER COUNT: " + ObjectDB.size());
+		adddefaults();
+		printloadedDB();
+	}
+
+	private boolean isvaliduser(User user) {
 		return true;
 	}
 
-	public void printuser(int i) {
-
-		System.out.print(ObjectDB.get(i).getAccessLevel() + " ");
-		System.out.print(ObjectDB.get(i).username + " d");
-		System.out.print(ObjectDB.get(i).password + "\n");
+	@Override
+	public void printDB() {
+		readDB();
+		for (int i = 0; i < this.ObjectDB.size(); i++)
+			System.out.println(ObjectDB.get(i).username);
 	}
 
 	public void printloadedDB() {
@@ -74,14 +65,26 @@ public class UserDB extends SerializedObjList<User> implements Serializable {
 			printuser(i);
 	}
 
-	public void printDB() {
-		readDB();
-		for (int i = 0; i < this.ObjectDB.size(); i++)
-			System.out.println(ObjectDB.get(i).username);
+	@Override
+	public void printuser(int i) {
+
+		System.out.print(ObjectDB.get(i).getAccessLevel() + " ");
+		System.out.print(ObjectDB.get(i).username + " d");
+		System.out.print(ObjectDB.get(i).password + "\n");
 	}
 
-	public int getAcessLevel(String username) {
+	public boolean userexist(String username) {
+		if (indexof(username) == -1) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean ValidateCredentials(String username, String password) {
 		int userindex = indexof(username);
-		return ObjectDB.get(userindex).AccessLevel;
+		if (userindex != -1 && ObjectDB.get(userindex).password.equals(password)) {
+			return true;
+		}
+		return false;
 	}
 }

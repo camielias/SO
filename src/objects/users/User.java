@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+	public final static int PATIENT = 0, ADMINISTRATOR = 1;
 	private static final long serialVersionUID = 687961495642283480L;
-	String username;
-	String password;
 	int AccessLevel;
 	int age;
 	String gender;
-	public final static int PATIENT = 0, ADMINISTRATOR = 1;
-
 	private int hashCode;
+	String password;
+
+	String username;
 
 	public User(String username, String password, int age, String gender) {
 		this.username = username;
@@ -30,6 +30,7 @@ public class User implements Serializable {
 		this.AccessLevel = accesslevel;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 
 		User blog = (User) obj;
@@ -52,6 +53,7 @@ public class User implements Serializable {
 		}
 	}
 
+	@Override
 	public int hashCode() {
 		return (this.username.hashCode());
 	}

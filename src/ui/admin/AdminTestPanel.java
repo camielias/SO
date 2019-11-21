@@ -23,15 +23,15 @@ import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import ui.MainFrame;
 
 public class AdminTestPanel {
 
-	public JFrame frame;
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					AdminTestPanel window = new AdminTestPanel();
@@ -43,12 +43,12 @@ public class AdminTestPanel {
 		});
 	}
 
-	MainFrame parentframe;
 	String AdminName;
 
-	public AdminTestPanel(MainFrame mainframe, String username) {
-		AdminName = username;
-		parentframe = mainframe;
+	public JFrame frame;
+	MainFrame parentframe;
+
+	public AdminTestPanel() {
 		initialize();
 	}
 
@@ -57,135 +57,10 @@ public class AdminTestPanel {
 		initialize();
 	}
 
-	public AdminTestPanel() {
+	public AdminTestPanel(MainFrame mainframe, String username) {
+		AdminName = username;
+		parentframe = mainframe;
 		initialize();
-	}
-
-	@SuppressWarnings("unchecked")
-	public Component TestPanel() {
-
-		JPanel Test1 = new JPanel();
-		Test1.setBackground(SystemColor.controlHighlight);
-		Test1.setMaximumSize(new Dimension(452, 222));
-		Test1.setLayout(new BoxLayout(Test1, BoxLayout.Y_AXIS));
-
-		Dimension bigtestpanel = new Dimension(452, 100);
-		JPanel TestPanel = new JPanel();
-		TestPanel.setBackground(SystemColor.window);
-		Test1.add(TestPanel);
-		TestPanel.setLayout(new BoxLayout(TestPanel, BoxLayout.X_AXIS));
-		TestPanel.setMaximumSize(bigtestpanel);
-
-		JPanel meta = new JPanel();
-		meta.setBackground(SystemColor.controlHighlight);
-		TestPanel.add(meta);
-		meta.setLayout(new BoxLayout(meta, BoxLayout.Y_AXIS));
-
-		JLabel lblTestNameLeeeeeeeeeenght = new JLabel("   Test Name leeeeeeeeeenght   ");
-		lblTestNameLeeeeeeeeeenght.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblTestNameLeeeeeeeeeenght.setBackground(Color.LIGHT_GRAY);
-		lblTestNameLeeeeeeeeeenght.setPreferredSize(new Dimension(0, 20));
-		meta.add(lblTestNameLeeeeeeeeeenght);
-
-		JTextPane descriptionpanel = new JTextPane();
-		descriptionpanel.setText("Description\nDescription\n");
-		descriptionpanel.setEditable(false);
-		descriptionpanel.setBackground(Color.LIGHT_GRAY);
-		meta.add(descriptionpanel);
-
-		JPanel TestOptions = new JPanel();
-		TestOptions.setForeground(SystemColor.controlHighlight);
-		TestOptions.setBackground(SystemColor.window);
-		TestPanel.add(TestOptions);
-
-		int testbuttonwidth = 90;
-		int testbuttonheight = 10;
-		JButton btnRemove = new JButton("Show");
-		btnRemove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnRemove.setForeground(Color.WHITE);
-		btnRemove.setBackground(new Color(241, 57, 63));
-
-		btnRemove.setPreferredSize(new Dimension(testbuttonwidth, testbuttonheight));
-		btnRemove.setMaximumSize(new Dimension(testbuttonwidth, 0));
-		JButton EditTestButton = new JButton("Edit");
-		EditTestButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		EditTestButton.setVerticalAlignment(SwingConstants.TOP);
-		EditTestButton.setForeground(Color.WHITE);
-		EditTestButton.setBackground(new Color(241, 57, 63));
-		EditTestButton.setPreferredSize(new Dimension(testbuttonwidth, testbuttonheight));
-		EditTestButton.setMaximumSize(new Dimension(testbuttonwidth, 0));
-		JButton btnRemov = new JButton("Remove");
-		btnRemov.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnRemov.setForeground(Color.WHITE);
-		btnRemov.setBackground(new Color(241, 57, 63));
-		btnRemov.setPreferredSize(new Dimension(testbuttonwidth, testbuttonheight));
-		btnRemov.setMaximumSize(new Dimension(testbuttonwidth, 0));
-		TestOptions.setLayout(new GridLayout(0, 1, 0, 0));
-		TestOptions.add(btnRemove);
-		TestOptions.add(EditTestButton);
-		TestOptions.add(btnRemov);
-
-		JLabel lblTestTakers = new JLabel("Test takers");
-		lblTestTakers.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblTestTakers.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTestTakers.setForeground(SystemColor.infoText);
-		lblTestTakers.setBackground(SystemColor.controlHighlight);
-		lblTestTakers.setPreferredSize(new Dimension(0, 20));
-		Test1.add(lblTestTakers);
-
-		JPanel TakerPanel = new JPanel();
-		Test1.add(TakerPanel);
-		TakerPanel.setLayout(new BoxLayout(TakerPanel, BoxLayout.X_AXIS));
-		TakerPanel.setMaximumSize(bigtestpanel);
-
-		JList<String> list = new JList<String>();
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setModel(new AbstractListModel() {
-			private static final long serialVersionUID = 4764823992980048399L;
-			String[] values = new String[] { "Taker 1", "Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1",
-					"Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1",
-					"Taker 2Taker 1", "Taker 2" };
-
-			public int getSize() {
-				return values.length;
-			}
-
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setVisibleRowCount(4);
-		JScrollPane scrollPane = new JScrollPane(list);
-		TakerPanel.add(scrollPane);
-
-		JPanel panel_3 = new JPanel();
-		TakerPanel.add(panel_3);
-		panel_3.setForeground(SystemColor.controlHighlight);
-		panel_3.setBackground(SystemColor.window);
-		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
-
-		JButton button = new JButton("Show");
-		button.setPreferredSize(new Dimension(90, 10));
-		button.setForeground(Color.WHITE);
-		button.setBackground(new Color(241, 57, 63));
-		panel_3.add(button);
-
-		JButton button_2 = new JButton("Remove");
-		button_2.setPreferredSize(new Dimension(90, 10));
-		button_2.setForeground(Color.WHITE);
-		button_2.setBackground(new Color(241, 57, 63));
-		panel_3.add(button_2);
-
-		return Test1;
 	}
 
 	private void initialize() {
@@ -203,6 +78,7 @@ public class AdminTestPanel {
 
 		JButton btnUsers = new JButton("Users");
 		btnUsers.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -221,6 +97,7 @@ public class AdminTestPanel {
 
 		JButton btnTests = new JButton("Tests");
 		btnTests.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 			}
@@ -232,6 +109,7 @@ public class AdminTestPanel {
 
 		JButton LogOutButton = new JButton("LogOut");
 		LogOutButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentframe.show(MainFrame.login);
 			}
@@ -277,6 +155,7 @@ public class AdminTestPanel {
 
 		JButton AddTestButton = new JButton("Add");
 		AddTestButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -290,6 +169,138 @@ public class AdminTestPanel {
 		lblListOfTest.setBounds(366, 21, 111, 15);
 		frame.getContentPane().add(lblListOfTest);
 		frame.setBounds(100, 100, 800, 502);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Component TestPanel() {
+
+		JPanel Test1 = new JPanel();
+		Test1.setBackground(SystemColor.controlHighlight);
+		Test1.setMaximumSize(new Dimension(452, 222));
+		Test1.setLayout(new BoxLayout(Test1, BoxLayout.Y_AXIS));
+
+		Dimension bigtestpanel = new Dimension(452, 100);
+		JPanel TestPanel = new JPanel();
+		TestPanel.setBackground(SystemColor.window);
+		Test1.add(TestPanel);
+		TestPanel.setLayout(new BoxLayout(TestPanel, BoxLayout.X_AXIS));
+		TestPanel.setMaximumSize(bigtestpanel);
+
+		JPanel meta = new JPanel();
+		meta.setBackground(SystemColor.controlHighlight);
+		TestPanel.add(meta);
+		meta.setLayout(new BoxLayout(meta, BoxLayout.Y_AXIS));
+
+		JLabel lblTestNameLeeeeeeeeeenght = new JLabel("   Test Name leeeeeeeeeenght   ");
+		lblTestNameLeeeeeeeeeenght.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblTestNameLeeeeeeeeeenght.setBackground(Color.LIGHT_GRAY);
+		lblTestNameLeeeeeeeeeenght.setPreferredSize(new Dimension(0, 20));
+		meta.add(lblTestNameLeeeeeeeeeenght);
+
+		JTextPane descriptionpanel = new JTextPane();
+		descriptionpanel.setText("Description\nDescription\n");
+		descriptionpanel.setEditable(false);
+		descriptionpanel.setBackground(Color.LIGHT_GRAY);
+		meta.add(descriptionpanel);
+
+		JPanel TestOptions = new JPanel();
+		TestOptions.setForeground(SystemColor.controlHighlight);
+		TestOptions.setBackground(SystemColor.window);
+		TestPanel.add(TestOptions);
+
+		int testbuttonwidth = 90;
+		int testbuttonheight = 10;
+		JButton btnRemove = new JButton("Show");
+		btnRemove.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnRemove.setForeground(Color.WHITE);
+		btnRemove.setBackground(new Color(241, 57, 63));
+
+		btnRemove.setPreferredSize(new Dimension(testbuttonwidth, testbuttonheight));
+		btnRemove.setMaximumSize(new Dimension(testbuttonwidth, 0));
+		JButton EditTestButton = new JButton("Edit");
+		EditTestButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		EditTestButton.setVerticalAlignment(SwingConstants.TOP);
+		EditTestButton.setForeground(Color.WHITE);
+		EditTestButton.setBackground(new Color(241, 57, 63));
+		EditTestButton.setPreferredSize(new Dimension(testbuttonwidth, testbuttonheight));
+		EditTestButton.setMaximumSize(new Dimension(testbuttonwidth, 0));
+		JButton btnRemov = new JButton("Remove");
+		btnRemov.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnRemov.setForeground(Color.WHITE);
+		btnRemov.setBackground(new Color(241, 57, 63));
+		btnRemov.setPreferredSize(new Dimension(testbuttonwidth, testbuttonheight));
+		btnRemov.setMaximumSize(new Dimension(testbuttonwidth, 0));
+		TestOptions.setLayout(new GridLayout(0, 1, 0, 0));
+		TestOptions.add(btnRemove);
+		TestOptions.add(EditTestButton);
+		TestOptions.add(btnRemov);
+
+		JLabel lblTestTakers = new JLabel("Test takers");
+		lblTestTakers.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblTestTakers.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTestTakers.setForeground(SystemColor.infoText);
+		lblTestTakers.setBackground(SystemColor.controlHighlight);
+		lblTestTakers.setPreferredSize(new Dimension(0, 20));
+		Test1.add(lblTestTakers);
+
+		JPanel TakerPanel = new JPanel();
+		Test1.add(TakerPanel);
+		TakerPanel.setLayout(new BoxLayout(TakerPanel, BoxLayout.X_AXIS));
+		TakerPanel.setMaximumSize(bigtestpanel);
+
+		JList<String> list = new JList<String>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setModel(new AbstractListModel() {
+			private static final long serialVersionUID = 4764823992980048399L;
+			String[] values = new String[] { "Taker 1", "Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1",
+					"Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1", "Taker 2Taker 1",
+					"Taker 2Taker 1", "Taker 2" };
+
+			@Override
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+
+			@Override
+			public int getSize() {
+				return values.length;
+			}
+		});
+		list.setVisibleRowCount(4);
+		JScrollPane scrollPane = new JScrollPane(list);
+		TakerPanel.add(scrollPane);
+
+		JPanel panel_3 = new JPanel();
+		TakerPanel.add(panel_3);
+		panel_3.setForeground(SystemColor.controlHighlight);
+		panel_3.setBackground(SystemColor.window);
+		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
+
+		JButton button = new JButton("Show");
+		button.setPreferredSize(new Dimension(90, 10));
+		button.setForeground(Color.WHITE);
+		button.setBackground(new Color(241, 57, 63));
+		panel_3.add(button);
+
+		JButton button_2 = new JButton("Remove");
+		button_2.setPreferredSize(new Dimension(90, 10));
+		button_2.setForeground(Color.WHITE);
+		button_2.setBackground(new Color(241, 57, 63));
+		panel_3.add(button_2);
+
+		return Test1;
 	}
 }

@@ -29,26 +29,18 @@ public class SerializedObjList<obj> implements Serializable {
 		SaveDB();
 	}
 
-	public void printuser(int i) {
-		System.out.println(ObjectDB.get(i).toString());
+	public void Concatenate(List<obj> NewObjDB) {
+		ObjectDB.addAll(NewObjDB);
 	}
 
-	public void SaveDB() {
-		System.out.println("\nsave db");
-		readDB();
-		RemoveDuplicates();
-		try {
-
-			FileOutputStream fos = new FileOutputStream(ObjFile);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(ObjectDB);
-			oos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void printDB() {
+		for (int i = 0; i < ObjectDB.size(); i++) {
+			System.out.println(ObjectDB.get(i).toString());
 		}
+	}
 
+	public void printuser(int i) {
+		System.out.println(ObjectDB.get(i).toString());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -68,19 +60,27 @@ public class SerializedObjList<obj> implements Serializable {
 		RemoveDuplicates();
 	}
 
-	public void printDB() {
-		for (int i = 0; i < ObjectDB.size(); i++) {
-			System.out.println(ObjectDB.get(i).toString());
-		}
-	}
-
-	public void Concatenate(List<obj> NewObjDB) {
-		ObjectDB.addAll(NewObjDB);
-	}
-
 	public void RemoveDuplicates() {
 		Set<obj> setOfBlogs = new LinkedHashSet<>(ObjectDB);
 		ObjectDB.clear();
 		ObjectDB.addAll(setOfBlogs);
+	}
+
+	public void SaveDB() {
+		System.out.println("\nsave db");
+		readDB();
+		RemoveDuplicates();
+		try {
+
+			FileOutputStream fos = new FileOutputStream(ObjFile);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(ObjectDB);
+			oos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

@@ -10,19 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
 
 import ui.MainFrame;
 
 public class AdminHomePanel {
-
-	public JFrame frame;
-	public JLabel UsernameLabel;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					AdminHomePanel window = new AdminHomePanel();
@@ -33,13 +32,14 @@ public class AdminHomePanel {
 			}
 		});
 	}
-
-	MainFrame parentframe;
 	String AdminName;
 
-	public AdminHomePanel(MainFrame mainframe, String username) {
-		AdminName = username;
-		parentframe = mainframe;
+	public JFrame frame;
+
+	MainFrame parentframe;
+	public JLabel UsernameLabel;
+
+	public AdminHomePanel() {
 		initialize();
 	}
 
@@ -48,7 +48,9 @@ public class AdminHomePanel {
 		initialize();
 	}
 
-	public AdminHomePanel() {
+	public AdminHomePanel(MainFrame mainframe, String username) {
+		AdminName = username;
+		parentframe = mainframe;
 		initialize();
 	}
 
@@ -69,6 +71,7 @@ public class AdminHomePanel {
 
 		JButton btnUsers = new JButton("Users");
 		btnUsers.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -87,6 +90,7 @@ public class AdminHomePanel {
 
 		JButton btnTests = new JButton("Tests");
 		btnTests.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.print("ShowingTEST");
 				parentframe.show(MainFrame.admintest);
@@ -99,6 +103,7 @@ public class AdminHomePanel {
 
 		JButton LogOutButton = new JButton("LogOut");
 		LogOutButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentframe.show(MainFrame.login);
 			}
@@ -116,6 +121,6 @@ public class AdminHomePanel {
 		UsernameLabel.setBounds(360, 72, 102, 25);
 		frame.getContentPane().add(UsernameLabel);
 		frame.setBounds(100, 100, 800, 502);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 }

@@ -12,21 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
 
 import objects.users.User;
 import ui.admin.AdminHomePanel;
 
 public class LoginPanel {
 
-	JFrame frame;
-	private JTextField UsernameField;
-	private JTextField PasswordField;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					LoginPanel window = new LoginPanel();
@@ -37,7 +35,7 @@ public class LoginPanel {
 			}
 		});
 	}
-
+	JFrame frame;
 	/**
 	 * Create the application.
 	 * 
@@ -45,12 +43,16 @@ public class LoginPanel {
 	 */
 	MainFrame parentframe;
 
-	public LoginPanel(MainFrame mainframe) {
-		parentframe = mainframe;
+	private JTextField PasswordField;
+
+	private JTextField UsernameField;
+
+	public LoginPanel() {
 		initialize();
 	}
 
-	public LoginPanel() {
+	public LoginPanel(MainFrame mainframe) {
+		parentframe = mainframe;
 		initialize();
 	}
 
@@ -87,6 +89,7 @@ public class LoginPanel {
 
 		JButton SignUpButton = new JButton("SignUp");
 		SignUpButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentframe.show(MainFrame.signup);
 			}
@@ -107,6 +110,7 @@ public class LoginPanel {
 		LoginButton.setBounds(387, 375, 142, 44);
 		frame.getContentPane().add(LoginButton);
 		LoginButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String Username = UsernameField.getText();
 				if (parentframe.userDB.ValidateCredentials(Username, PasswordField.getText())) {
@@ -135,6 +139,6 @@ public class LoginPanel {
 		PasswordField.setBounds(360, 134, 416, 37);
 		frame.getContentPane().add(PasswordField);
 		frame.setBounds(100, 100, 800, 502);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 }

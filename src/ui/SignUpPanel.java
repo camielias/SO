@@ -16,23 +16,18 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.WindowConstants;
 
 import objects.users.User;
 
 public class SignUpPanel {
-
-	JFrame frame;
-	private JTextField PasswordField;
-	private JTextField PasswordConfirmationField;
-	private JTextField UsernameField;
-	private JComboBox<String> GenderBox;
-	private JSpinner AgeSpinner;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					SignUpPanel window = new SignUpPanel();
@@ -43,19 +38,26 @@ public class SignUpPanel {
 			}
 		});
 	}
-
+	private JSpinner AgeSpinner;
+	JFrame frame;
+	private JComboBox<String> GenderBox;
 	/**
 	 * Create the application.
 	 */
 
 	MainFrame parentframe;
+	private JTextField PasswordConfirmationField;
 
-	public SignUpPanel(MainFrame mainframe) {
-		parentframe = mainframe;
+	private JTextField PasswordField;
+
+	private JTextField UsernameField;
+
+	public SignUpPanel() {
 		initialize();
 	}
 
-	public SignUpPanel() {
+	public SignUpPanel(MainFrame mainframe) {
+		parentframe = mainframe;
 		initialize();
 	}
 
@@ -96,6 +98,7 @@ public class SignUpPanel {
 		SignUpButton.setBounds(589, 375, 142, 44);
 		frame.getContentPane().add(SignUpButton);
 		SignUpButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 				parentframe.userDB.AddObj(new User(UsernameField.getText(), PasswordField.getText(),
@@ -115,6 +118,7 @@ public class SignUpPanel {
 		LoginButton.setBounds(387, 375, 142, 44);
 		frame.getContentPane().add(LoginButton);
 		LoginButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				parentframe.show(MainFrame.login);
 			}
@@ -160,6 +164,6 @@ public class SignUpPanel {
 		AgeSpinner.setBounds(585, 134, 60, 37);
 		frame.getContentPane().add(AgeSpinner);
 		frame.setBounds(100, 100, 800, 502);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 }
